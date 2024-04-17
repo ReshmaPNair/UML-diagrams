@@ -1,0 +1,22 @@
+def generate_use_case_diagram():
+    diagram_code = "@startuml\n"
+    diagram_code += "left to right direction\n"
+    diagram_code += "skinparam packageStyle rectangle\n\n"
+    actors = ["Actor 1", "Actor 2"]
+    use_cases = ["Use Case 1", "Use Case 2", "Use Case 3"]
+    diagram_code += "actor \"{}\" as {}\n".format(actors[0], "Actor1")
+    diagram_code += "actor \"{}\" as {}\n\n".format(actors[1], "Actor2")
+    diagram_code += 'rectangle "System" {\n'
+    for use_case in use_cases:
+        diagram_code += '  usecase "{}" as {}\n'.format(use_case, "UC" + str(use_cases.index(use_case) + 1))
+    diagram_code += "}\n\n"
+    diagram_code += "{} --> {}\n".format("Actor1", "UC1")
+    diagram_code += "{} --> {}\n".format("Actor1", "UC2")
+    diagram_code += "{} --> {}\n".format("Actor2", "UC2")
+    diagram_code += "{} --> {}\n".format("UC1", "UC3")
+    diagram_code += "{} --> {}\n".format("UC2", "UC3")
+    diagram_code += "@enduml"
+    return diagram_code
+if __name__ == "__main__":
+    generated_code = generate_use_case_diagram()
+    print(generated_code)
