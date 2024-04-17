@@ -1,0 +1,220 @@
+# Usecase Diagram 
+def generate_use_case_diagram():
+    # Initialize PlantUML code string
+    diagram_code = "@startuml\n"
+    diagram_code += "left to right direction\n"
+    diagram_code += "skinparam packageStyle rectangle\n\n"
+
+    # Define actors and their aliases
+    actors = {"Customer": "Customer", "Bank Teller": "Teller"}
+
+    # Define use cases and their aliases
+    use_cases = {
+        "Account Management": "AccountMgmt",
+        "Transaction Handling": "Transaction",
+        "Security and Confidentiality": "Security",
+        "In-Person Assistance": "Assistance"
+    }
+
+    # Add actors to the diagram
+    for actor_name, actor_alias in actors.items():
+        diagram_code += 'actor "{}" as {}\n'.format(actor_name, actor_alias)
+
+    # Add use cases to the diagram
+    diagram_code += '\nrectangle "Bank System" {\n'
+    for use_case_name, use_case_alias in use_cases.items():
+        diagram_code += '  usecase "{}" as {}\n'.format(use_case_name, use_case_alias)
+    diagram_code += "}\n\n"
+
+    # Define connections between actors and use cases
+    use_case_connections = {
+        "Customer": ["AccountMgmt", "Transaction", "Security"],
+        "Teller": ["Assistance", "Security"]
+    }
+
+    # Add connections to the diagram
+    for source, targets in use_case_connections.items():
+        for target in targets:
+            diagram_code += "{} --> {}\n".format(source, target)
+
+    # Complete PlantUML code
+    diagram_code += "@enduml"
+
+    # Return the generated PlantUML code
+    return diagram_code
+
+if __name__ == "__main__":
+    # Generate the use case diagram code
+    generated_code = generate_use_case_diagram()
+
+    # Print the generated code
+    print(generated_code)
+
+#Plant uml code for usecase diagram 
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Customer" as Customer
+actor "Bank Teller" as Teller
+
+rectangle "Bank System" {
+  usecase "Account Management" as AccountMgmt
+  usecase "Transaction Handling" as Transaction
+  usecase "Security and Confidentiality" as Security
+  usecase "In-Person Assistance" as Assistance
+}
+
+Customer --> AccountMgmt
+Customer --> Transaction
+Customer --> Security
+Teller --> Assistance
+Teller --> Security
+@enduml
+
+# Classs diagarm
+
+def generate_plantuml_code():
+    plantuml_code = "@startuml\n"
+
+    # Define classes and their attributes/methods
+    classes = [
+        ("Customer", [
+            "+ open_account(documentation)",
+            "+ close_account()",
+            "+ deposit(amount)",
+            "+ withdraw(amount)",
+            "+ check_balance()",
+            "+ transfer_funds(to_account, amount)"
+        ]),
+        ("BankTeller", [
+            "+ in_person_assistance(customer)",
+            "+ update_personal_info(customer, new_info)",
+            "+ issue_checkbook(customer)",
+            "+ handle_special_request(customer, request)"
+        ]),
+        ("ATMService", [
+            "+ cash_withdrawal(customer, amount)",
+            "+ balance_inquiry(customer)"
+        ]),
+        ("Account", [
+            "- account_number",
+            "- balance"
+        ])
+    ]
+
+    # Add class definitions to the PlantUML code
+    for class_name, methods in classes:
+        plantuml_code += f"class {class_name} {{\n"
+        for method in methods:
+            plantuml_code += f"  {method}\n"
+        plantuml_code += "}\n\n"
+
+    # Define relationships
+    relationships = [
+        ("Customer", "Account"),
+        ("BankTeller", "Account"),
+        ("ATMService", "Account")
+    ]
+
+    # Add relationships to the PlantUML code
+    for source, target in relationships:
+        plantuml_code += f"{source} -- {target}\n"
+
+    # End the PlantUML code
+    plantuml_code += "@enduml"
+
+    return plantuml_code
+
+if __name__ == "__main__":
+    generated_code = generate_plantuml_code()
+    print(generated_code)
+
+%Plant uml code #
+
+@startuml
+class Customer {
+  + open_account(documentation)
+  + close_account()
+  + deposit(amount)
+  + withdraw(amount)
+  + check_balance()
+  + transfer_funds(to_account, amount)
+}
+
+class BankTeller {
+  + in_person_assistance(customer)
+  + update_personal_info(customer, new_info)
+  + issue_checkbook(customer)
+  + handle_special_request(customer, request)
+}
+
+class ATMService {
+  + cash_withdrawal(customer, amount)
+  + balance_inquiry(customer)
+}
+
+class Account {
+  - account_number
+  - balance
+}
+
+Customer -- Account
+BankTeller -- Account
+ATMService -- Account
+@enduml
+
+# Sequence Diagram
+def generate_sequence_diagram():
+    diagram_code = "@startuml\n"
+    diagram_code += "title Bank System Sequence Diagram\n\n"
+
+    # Define actors and lifelines
+    actors = ["Customer", "BankTeller"]
+    lifelines = ["ATM", "BankSystem"]
+
+    # Add actors and lifelines to the diagram
+    for actor in actors:
+        diagram_code += f"actor {actor}\n"
+    for lifeline in lifelines:
+        diagram_code += f"participant {lifeline}\n"
+
+    # Define sequence of actions
+    actions = [
+        ("Customer", "BankSystem", "Opening Accounts"),
+        ("Customer", "BankSystem", "Closing Accounts"),
+        ("Customer", "BankSystem", "Deposits and Withdrawals"),
+        ("Customer", "BankSystem", "Checking Balances"),
+        ("Customer", "BankSystem", "Transferring Funds"),
+        ("BankTeller", "BankSystem", "In-Person Assistance"),
+        ("BankTeller", "BankSystem", "Account Services"),
+        ("Customer", "ATM", "ATM Self-Service")
+    ]
+
+    # Add actions to the diagram
+    for source, target, action in actions:
+        diagram_code += f"{source} -> {target}: {action}\n"
+
+    diagram_code += "@enduml"
+    return diagram_code
+
+if __name__ == "__main__":
+    generated_code = generate_sequence_diagram()
+    print(generated_code) 
+# Plant uml code 
+@startuml
+title Bank System Sequence Diagram
+
+actor Customer
+actor BankTeller
+participant ATM
+participant BankSystem
+Customer -> BankSystem: Opening Accounts
+Customer -> BankSystem: Closing Accounts
+Customer -> BankSystem: Deposits and Withdrawals
+Customer -> BankSystem: Checking Balances
+Customer -> BankSystem: Transferring Funds
+BankTeller -> BankSystem: In-Person Assistance
+BankTeller -> BankSystem: Account Services
+Customer -> ATM: ATM Self-Service
+@enduml 
