@@ -1,0 +1,15 @@
+def generate_class_diagram():
+    diagram_code = "@startuml\n"
+    diagram_code += "class ExampleClass {\n"
+    diagram_code += "  + attribute1: type\n"
+    diagram_code += "  + attribute2: type\n"
+    diagram_code += "  - method1(): return_type\n"
+    diagram_code += "  - method2(param1: type, param2: type): return_type\n"
+    diagram_code += "}\n"
+    diagram_code += "@enduml"
+
+    return diagram_code
+
+if __name__ == "__main__":
+    generated_code = generate_class_diagram()
+    print(generated_code)
