@@ -1,0 +1,8 @@
+@startuml
+class ExampleClass {
+  + attribute1: type
+  + attribute2: type
+  - method1(): return_type
+  - method2(param1: type, param2: type): return_type
+}
+@enduml
