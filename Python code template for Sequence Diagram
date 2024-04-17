@@ -1,0 +1,23 @@
+def generate_sequence_diagram():
+    diagram_code = "@startuml\n"
+    diagram_code += "title Your Sequence Diagram Title\n\n"
+    actors = ["Actor1", "Actor2"]
+    lifelines = ["Lifeline1", "Lifeline2"]
+    diagram_code += 'actor {}\n'.format(actors[0])
+    diagram_code += 'actor {}\n\n'.format(actors[1])
+    diagram_code += 'participant "{}" as {}\n'.format("System", "System")
+    # Example sequence of actions
+    actions = [
+        ("Actor1", "System", "Action1"),
+        ("System", "Lifeline1", "Action2"),
+        ("Lifeline1", "Lifeline2", "Action3"),
+        ("Lifeline2", "System", "Action4"),
+        ("System", "Actor2", "Action5")
+    ]
+    for action in actions:
+        diagram_code += '{} -> {}: {}\n'.format(action[0], action[1], action[2])
+    diagram_code += "@enduml"
+    return diagram_code
+if __name__ == "__main__":
+    generated_code = generate_sequence_diagram()
+    print(generated_code)
