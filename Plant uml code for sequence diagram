@@ -1,0 +1,13 @@
+@startuml
+title Your Sequence Diagram Title
+
+actor Actor1
+actor Actor2
+
+participant "System" as System
+Actor1 -> System: Action1
+System -> Lifeline1: Action2
+Lifeline1 -> Lifeline2: Action3
+Lifeline2 -> System: Action4
+System -> Actor2: Action5
+@enduml
