@@ -1,0 +1,19 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Actor 1" as Actor1
+actor "Actor 2" as Actor2
+
+rectangle "System" {
+  usecase "Use Case 1" as UC1
+  usecase "Use Case 2" as UC2
+  usecase "Use Case 3" as UC3
+}
+
+Actor1 --> UC1
+Actor1 --> UC2
+Actor2 --> UC2
+UC1 --> UC3
+UC2 --> UC3
+@enduml
